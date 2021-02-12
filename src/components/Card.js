@@ -12,6 +12,7 @@ import {
 import InlineInput from 'rt/widgets/InlineInput'
 import Tag from './Card/Tag'
 import DeleteButton from 'rt/widgets/DeleteButton'
+import firebase from 'firebase'
 
 class Card extends Component {
   onDelete = e => {
@@ -40,6 +41,12 @@ class Card extends Component {
 
     const updateCard = (card) => {
       onChange({...card, id})
+          firebase
+      .firestore()
+      .collection('development')
+      .doc(id)
+      .update({ ...card });
+
     }
 
     return (

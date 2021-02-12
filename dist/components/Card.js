@@ -27,6 +27,8 @@ var _Tag = _interopRequireDefault(require("./Card/Tag"));
 
 var _DeleteButton = _interopRequireDefault(require("../widgets/DeleteButton"));
 
+var _firebase = _interopRequireDefault(require("firebase"));
+
 class Card extends _react.Component {
   constructor(...args) {
     super(...args);
@@ -58,6 +60,8 @@ class Card extends _react.Component {
       onChange((0, _objectSpread2.default)({}, card, {
         id
       }));
+
+      _firebase.default.firestore().collection('development').doc(id).update((0, _objectSpread2.default)({}, card));
     };
 
     return _react.default.createElement(_Base.MovableCardWrapper, {
